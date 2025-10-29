@@ -46,7 +46,7 @@ FastAIE（Fast AI Execute）是一款基于 **Tauri 2** 框架的**超轻量级*
 - 开启工具调用能力，让AI可以自由调用内置工具
   <img width="1216" height="843" alt="image" src="https://github.com/user-attachments/assets/9e49f9c5-b129-4707-b069-fe65e5ae6c87" />
 
-- 提示词中配置命令行功能，让AI了解目前可以使用的工具
+- 提示词中配置命令行功能，可以添加任意命令行工具，让AI了解目前可调用的工具
 <img width="986" height="456" alt="image" src="https://github.com/user-attachments/assets/3d3c31cd-84e7-4cde-aa38-7212413051c3" />
 
 - 输入 “帮我扫描127.0.0.1端口” 自动调用工具，完成后返回结果
