@@ -57,7 +57,7 @@ FastAIE（Fast AI Execute）是一款基于 **Tauri 2** 框架的**超轻量级*
 
 - 利用nmap工具进行远程操作系统识别
   
-<img width="1200" height="979" alt="image" src="https://github.com/user-attachments/assets/2643fc18-e7e5-46e6-aaea-16e2dbeccc1e" />
+<img width="1200" height="953" alt="image" src="https://github.com/user-attachments/assets/2aae8cb6-1d9d-4a26-8283-eae5ed10dbed" />
 
 
 ---
