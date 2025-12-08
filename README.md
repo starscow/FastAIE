@@ -9,7 +9,7 @@
 
 </div>
 
-
+ 
 ## 项目概述
 
 ###  简介
@@ -20,21 +20,24 @@ FastAIE（Fast AI Execute）是一款基于 **Tauri 2** 框架的**超轻量级*
 
 > ⚠️ **系统依赖**：Windows 用户需安装 [WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)（Win10/11 自带）
 
+- **下载地址**::  https://github.com/vam876/FastAIE/releases/tag/v0.1.0
+  
 ###  核心特点
 
 - ✅ **轻量快速**：单文件，无需安装，软件仅 15MB，启动秒开
-- ✅ **工具调用**：AI 可执行系统命令、文件操作、网络请求、扫描端口
-- ✅ **支持本地运行**：本地模型所有数据本地存储，无隐私泄露风险
+- ✅ **工具调用**：AI 可执行系统命令、文件操作、网络请求、扫描端口，调用各种命令行工具
+- ✅ **支持本地运行**：自由接入本地模型，使用本地模型所有数据本地存储，无隐私泄露风险
 - ✅ **高度可定制**：自定义 AI 角色、工作流、工具配置
 
 ###  核心原理
 
-```
-1. 启动时注入系统提示词 → 告诉 AI 可用工具、参数格式、安全边界
-2. 用户发消息 → AI 判断是否需要调用工具
-3. 需要工具 → 生成调用指令 → FastAIE 解析 → 本地执行
-4. 执行结果 → 返回给 AI → AI 整理后以自然语言回复用户
-```
+遵循“提示引导→AI判断→指令执行→结果反馈”的闭环逻辑，引用MCP，Function Calling设计：
+1. **启动注入提示**：客户端启动时，自动向AI注入系统提示词，明确告知可用工具列表(可以自由添加命令行工具、用途、使用参数等，动态拼接到System Prompt)及安全边界。
+2. **用户交互触发**：用户发送问题或需求后，AI先判断是否需要调用工具（无需则直接用自然语言回复）。
+3. **生成执行指令**：若需调用工具，AI按系统提示词中指定格式生成工具调用指令。
+4. **本地解析执行**：客户端捕获指令并解析，在本地执行对应操作（如运行命令、操作文件）。
+5. **结果整理反馈**：执行结果回传给AI，AI将结果转化为自然语言，以易懂的形式回复用户。
+
 
  - 目的是通过通过命令执行、文件操作、网络请求函数，**打通AI连接外部所有命令行工具的通道**。
 
@@ -46,8 +49,9 @@ FastAIE（Fast AI Execute）是一款基于 **Tauri 2** 框架的**超轻量级*
 - 开启工具调用能力，让AI可以自由调用内置工具
   <img width="1216" height="843" alt="image" src="https://github.com/user-attachments/assets/9e49f9c5-b129-4707-b069-fe65e5ae6c87" />
 
-- 提示词中配置命令行功能，可以添加任意命令行工具，让AI了解目前可调用的工具
-<img width="986" height="456" alt="image" src="https://github.com/user-attachments/assets/3d3c31cd-84e7-4cde-aa38-7212413051c3" />
+- 提示词中配置命令行功能，可以自由添加任意工具，如Fscan、kscan、SQLMap、dirsearch、Hydra、JSFinder等你能想到的命令行工具，让AI了解目前可调用的工具
+
+- <img width="986" height="456" alt="image" src="https://github.com/user-attachments/assets/3d3c31cd-84e7-4cde-aa38-7212413051c3" />
 
 - 输入 “帮我扫描127.0.0.1端口” 自动调用工具，完成后返回结果
 <img width="1200" height="976" alt="image" src="https://github.com/user-attachments/assets/1c0e65f1-61f8-4496-9d5c-be238d8ccce8" />
